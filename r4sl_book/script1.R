@@ -1,6 +1,8 @@
 #' ---
 #' title: "Modeling Basics in R"
-#' output: github_document
+#' output:
+#' html_document:
+#' keep_md: true
 #' ---
 
 #' Modeling Basics in R
