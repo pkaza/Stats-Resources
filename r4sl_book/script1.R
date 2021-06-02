@@ -48,3 +48,13 @@ head(predict(mod_1), n = 10) #Predicted values for the first 10 observations bas
 new_obs = data.frame(TV = 150, radio = 40, newspaper = 1)
 predict(mod_1, newdata = new_obs,interval="confidence")
 predict(mod_1, newdata = new_obs, interval = "prediction", level = 0.99)
+
+
+# Adding complexity
+
+#' We have a number of ways to add complexity to a linear model, 
+#' even allowing a linear model to be used to model non-linear relationships.
+
+mod_2 = lm(sales ~ . + TV:newspaper, data = Advertising)
+coef(mod_2)
+summary(mod_2)

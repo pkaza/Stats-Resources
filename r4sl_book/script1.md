@@ -1,7 +1,7 @@
 Modeling Basics in R
 ================
 pkazamias
-2021-05-31
+2021-06-02
 
 ``` r
 # Libraries 
@@ -184,3 +184,44 @@ predict(mod_1, newdata = new_obs, interval = "prediction", level = 0.99)
 
     ##        fit      lwr      upr
     ## 1 17.34375 12.89612 21.79138
+
+``` r
+# Adding complexity
+```
+
+We have a number of ways to add complexity to a linear model, even
+allowing a linear model to be used to model non-linear relationships.
+
+``` r
+mod_2 = lm(sales ~ . + TV:newspaper, data = Advertising)
+coef(mod_2)
+```
+
+    ##   (Intercept)            TV         radio     newspaper  TV:newspaper 
+    ##  3.8730824491  0.0392939602  0.1901312252 -0.0320449675  0.0002016962
+
+``` r
+summary(mod_2)
+```
+
+    ## 
+    ## Call:
+    ## lm(formula = sales ~ . + TV:newspaper, data = Advertising)
+    ## 
+    ## Residuals:
+    ##     Min      1Q  Median      3Q     Max 
+    ## -9.5522 -0.6575  0.2784  1.0897  2.8850 
+    ## 
+    ## Coefficients:
+    ##                Estimate Std. Error t value Pr(>|t|)    
+    ## (Intercept)   3.873e+00  4.012e-01   9.655  < 2e-16 ***
+    ## TV            3.929e-02  2.270e-03  17.312  < 2e-16 ***
+    ## radio         1.901e-01  8.379e-03  22.692  < 2e-16 ***
+    ## newspaper    -3.204e-02  1.042e-02  -3.074 0.002413 ** 
+    ## TV:newspaper  2.017e-04  5.675e-05   3.554 0.000476 ***
+    ## ---
+    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+    ## 
+    ## Residual standard error: 1.638 on 195 degrees of freedom
+    ## Multiple R-squared:  0.9035, Adjusted R-squared:  0.9015 
+    ## F-statistic: 456.2 on 4 and 195 DF,  p-value: < 2.2e-16
